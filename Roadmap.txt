@@ -1,0 +1,106 @@
+FASTLAB - ROADMAP DE ESTUDOS
+==============================
+
+Dica geral: nao tente aprender tudo antes de comecar. Estude o
+suficiente de cada fase pra fazer funcionar, implemente, e so depois
+aprofunda se quiser entender o "porque" por tras. Evita ficar preso em
+tutoriais sem nunca abrir o editor.
+
+
+FASE 0 - Fundamentos minimos (antes de codar)
+----------------------------------------------
+[ ] Python intermediario: funcoes, type hints, async/await basico
+[ ] HTTP na pratica: metodos, status codes, JSON, o que e uma API REST
+[ ] Terminal/CLI basico: navegar pastas, rodar comandos, variaveis de ambiente
+
+Se ja tem isso, pula direto pra Fase 1.
+
+
+FASE 1 - Baseline (o que ja esta rodando)
+-------------------------------------------
+[ ] FastAPI basico: rotas, @app.get/@app.post, uvicorn
+[ ] CORS: por que existe e como configurar
+[ ] Fetch API do JS: fetch, async/await, manipular DOM
+
+Ir atras de: doc oficial do FastAPI (tutorial "First Steps" e "Path Params")
+
+
+FASE 2 - Validation
+---------------------
+[ ] Pydantic: BaseModel, validacao de campos, tipos customizados, Field()
+[ ] Status codes de erro: 422 (validacao), tratamento automatico do FastAPI
+[ ] Testar API: usar o Swagger UI automatico do FastAPI (/docs)
+
+Ir atras de: doc do Pydantic v2 (mudou bastante da v1, cuidado com
+tutoriais antigos)
+
+
+FASE 3 - Persistence
+-----------------------
+[ ] SQL basico: SELECT, INSERT, JOIN, indices
+[ ] PostgreSQL: instalar via Docker, criar banco, psql basico
+[ ] SQLAlchemy: ORM, Session, models, migrations
+[ ] Alembic: versionar mudancas de schema
+[ ] Docker Compose: subir Postgres + backend juntos
+
+Atencao: essa fase costuma travar bastante gente iniciante. Reserve
+tempo extra aqui.
+
+
+FASE 4 - Async Queue
+------------------------
+[ ] Redis: conceito de fila (list/pub-sub), comandos basicos
+[ ] Workers: processo separado escutando a fila e consumindo mensagens
+[ ] Comunicacao assincrona: por que a API responde rapido e o
+    processamento pesado acontece depois, em outro processo
+
+Escolher entre Redis "cru" (mais aprendizado, mais trabalho) ou uma lib
+como RQ (mais simples pra comecar) ou Celery (mais robusto, mais
+complexo). Sugestao: comecar com RQ.
+
+
+FASE 5 - Cached Pipeline
+---------------------------
+[ ] Cache com Redis: SET/GET com TTL, padrao cache-aside
+[ ] Invalidacao de cache: quando atualizar vs quando servir do cache
+
+
+FASE 6 - Resilient Pipeline
+-------------------------------
+[ ] Retry com backoff exponencial (lib: tenacity)
+[ ] Idempotencia: como gerar/usar uma idempotency key
+[ ] Dead Letter Queue: pra onde vao as mensagens que falharam repetidamente
+[ ] Logging estruturado: structlog ou logging com output em JSON
+
+
+FASE 7 - Production Mode
+----------------------------
+[ ] Autenticacao: API Keys simples primeiro, depois JWT (python-jose
+    ou pyjwt)
+[ ] Rate limiting: lib slowapi (baseada em limits)
+[ ] Prometheus: conceito de metricas (counter, histogram, gauge),
+    prometheus-fastapi-instrumentator
+[ ] Grafana: conectar no Prometheus, montar dashboards
+
+
+FASE 8 - Benchmarks e comparacao
+------------------------------------
+[ ] Locust ou k6: escolher um
+    - Locust (Python) -> mais facil de integrar com o stack
+    - k6 (JS) -> mais performatico pra gerar carga alta
+[ ] Metricas de sistema: entender P95/P99 de verdade (calcular e
+    interpretar)
+[ ] Coleta de metricas de CPU/memoria: psutil (Python) ou Docker stats
+
+
+FASE 9 - Frontend "de verdade" (React)
+------------------------------------------
+[ ] Vite + React (setup do projeto)
+[ ] Recharts ou Chart.js: graficos historicos
+[ ] Fetch/state management: useState, useEffect, chamadas a API
+
+
+==============================
+Ordem sugerida: seguir as fases em sequencia, testando cada pipeline
+antes de avancar pra proxima. Nao pular pra Fase 9 antes de ter pelo
+menos Baseline + Validation + Persistence funcionando.
