@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <title>FastLab</title>
-  <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 40px auto; }
-    button { padding: 8px 16px; cursor: pointer; }
-    pre { background: #f4f4f4; padding: 12px; border-radius: 4px; }
-  </style>
-</head>
-<body>
-  <h1>FastLab</h1>
-  <button id="run">Rodar Baseline</button>
-  <pre id="result">Aguardando...</pre>
-
-  <script>
-    const API_URL = "http://localhost:8000";
-
-    document.getElementById("run").addEventListener("click", async () => {
-      const resultEl = document.getElementById("result");
-      resultEl.textContent = "Carregando...";
-      try {
-        const res = await fetch(`${API_URL}/api/baseline`);
-        const data = await res.json();
-        resultEl.textContent = JSON.stringify(data, null, 2);
-      } catch (err) {
-        resultEl.textContent = "Erro: " + err.message;
-      }
-    });
-  </script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>frontend</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
