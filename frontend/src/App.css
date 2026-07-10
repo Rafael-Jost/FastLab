@@ -1,0 +1,17 @@
+.lab-card {
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.request-status {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.request-status.success {
+  color: #00ff00;
+}
+.request-status.error {
+  color: #ff0000;
+}
