@@ -5,6 +5,7 @@ import makeBasicRequest from './utils/makeBasicRequest'
 function App() {
   const [requestStatus, setRequestStatus] = useState<string | null>(null)
   const [requestNumber, setRequestNumber] = useState<number>(1)
+  const [requestTime, setRequestTime] = useState<number | null>(null)
   const [successfulRequests , setSuccessfulRequests ] = useState<number | null>(null)
 
   return (
@@ -23,9 +24,11 @@ function App() {
           const requestResult = await makeBasicRequest(requestNumber || 1);
           setRequestStatus(requestResult.status);
           setSuccessfulRequests(requestResult.requestNum)
+          setRequestTime(requestResult.elapsedTime);
         }}>Make Request</button>
         {requestStatus ? <p className={`request-status ${requestStatus}`}>Request Status: {requestStatus}</p> : null}
         {successfulRequests ? <p className={`request-status ${requestStatus}`}>Successful Requests: {successfulRequests}</p> : null}
+        {requestTime !== null ? <p className={`request-status ${requestStatus}`}>Request Time: {requestTime.toFixed(2)} ms</p> : null}
       </div>
     </>
   )

@@ -1,5 +1,12 @@
 async function makeBasicRequest(requestNum: number = 1) {
 
+  const elapsedTime = (startTime: number) => {
+    const endTime = performance.now();
+    return endTime - startTime;
+  }
+
+  const startTime = performance.now();
+
   for (let i = 0; i < requestNum; i++){
     try {
       const response = await fetch('http://127.0.0.1:8000/basic');
@@ -11,11 +18,11 @@ async function makeBasicRequest(requestNum: number = 1) {
     }
     catch (error) {
       console.error('Request failed:', error);
-      return {'status':'error', 'requestNum': i};
+      return {'status':'error', 'requestNum': i, 'elapsedTime': elapsedTime(startTime)};
     }
   } 
   
-  return {'status':'success', 'requestNum': requestNum}
+  return {'status':'success', 'requestNum': requestNum, 'elapsedTime': elapsedTime(startTime)}
 };
 
 
