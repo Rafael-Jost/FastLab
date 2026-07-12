@@ -4,6 +4,8 @@ import makeBasicRequest from './utils/makeBasicRequest'
 
 function App() {
   const [requestStatus, setRequestStatus] = useState<string | null>(null)
+  const [requestNumber, setRequestNumber] = useState<number>(1)
+  const [successfulRequests , setSuccessfulRequests ] = useState<number | null>(null)
 
   return (
     <>
@@ -12,11 +14,18 @@ function App() {
       </div>
       <div className="lab-card">
         <h3>Basic</h3>
+        <label>
+          Number of requests:
+          <input type='number' onChange={(e) => {setRequestNumber(Number(e.target.value))}} />
+        </label>
+        <br></br><br></br>
         <button onClick={async () => {
-          const status = await makeBasicRequest();
-          setRequestStatus(status);
+          const requestResult = await makeBasicRequest(requestNumber || 1);
+          setRequestStatus(requestResult.status);
+          setSuccessfulRequests(requestResult.requestNum)
         }}>Make Request</button>
         {requestStatus ? <p className={`request-status ${requestStatus}`}>Request Status: {requestStatus}</p> : null}
+        {successfulRequests ? <p className={`request-status ${requestStatus}`}>Successful Requests: {successfulRequests}</p> : null}
       </div>
     </>
   )
