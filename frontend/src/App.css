@@ -4,6 +4,13 @@
   border-radius: 10px;
 }
 
+.form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
 .request-status {
   margin-top: 10px;
   font-weight: bold;

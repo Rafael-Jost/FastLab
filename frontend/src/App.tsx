@@ -7,6 +7,7 @@ function App() {
   const [requestNumber, setRequestNumber] = useState<number>(1)
   const [requestTime, setRequestTime] = useState<number | null>(null)
   const [successfulRequests , setSuccessfulRequests ] = useState<number | null>(null)
+  const [simultaneousRequests, setSimultaneousRequests] = useState<boolean>(false)
 
   return (
     <>
@@ -15,13 +16,18 @@ function App() {
       </div>
       <div className="lab-card">
         <h3>Basic</h3>
-        <label>
-          Number of requests:
-          <input type='number' onChange={(e) => {setRequestNumber(Number(e.target.value))}} />
-        </label>
-        <br></br><br></br>
+        <div className="form-fields">
+          <label>
+            Number of requests:
+            <input type='number' onChange={(e) => {setRequestNumber(Number(e.target.value))}} />
+          </label>
+          <label>
+            Simultaneous requests:
+            <input type='checkbox' onChange={(e) => {setSimultaneousRequests(e.target.checked)}} />
+          </label>
+        </div>
         <button onClick={async () => {
-          const requestResult = await makeBasicRequest(requestNumber || 1);
+          const requestResult = await makeBasicRequest(requestNumber || 1, simultaneousRequests);
           setRequestStatus(requestResult.status);
           setSuccessfulRequests(requestResult.requestNum)
           setRequestTime(requestResult.elapsedTime);
