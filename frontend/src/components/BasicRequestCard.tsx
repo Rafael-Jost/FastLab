@@ -1,5 +1,6 @@
 import useLabRequest from '../hooks/useLabRequest';
 import makeBasicRequest from '../utils/makeBasicRequest';
+import Spinner from './Spinner';
 import { useState } from 'react';
 
 function BasicRequestCard() {
@@ -20,12 +21,15 @@ function BasicRequestCard() {
                 <input type='checkbox' onChange={(e) => {setSimultaneousRequests(e.target.checked)}} />
             </label>
             </div>
-            <button onClick={async () => {
-                await labRequestRun(requestNumber || 1, simultaneousRequests);
-            }}>Make Request</button>
-            {result && <p className={`request-status ${result.status}`}>Request Status: {result.status}</p>}
-            {result && <p className={`request-status ${result.status}`}>Successful Requests: {result.requestNum}</p>}
-            {result && <p className={`request-status ${result.status}`}>Request Time: {result.elapsedTime.toFixed(2)} ms</p>}
+            <span className="request-button-container">
+                <button className="request-button" onClick={async () => {
+                    await labRequestRun(requestNumber || 1, simultaneousRequests);
+                }}>Make Request</button> 
+                {isLoading ? <Spinner /> : null}
+            </span>
+            {result ? <p className={`request-status ${result.status}`}>Request Status: {result.status}</p> : null}
+            {result ? <p className={`request-status ${result.status}`}>Successful Requests: {result.requestNum}</p> : null}
+            {result ? <p className={`request-status ${result.status}`}>Request Time: {result.elapsedTime.toFixed(2)} ms</p> : null}
         </div>
     )
 }

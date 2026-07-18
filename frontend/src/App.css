@@ -22,3 +22,32 @@
 .request-status.error {
   color: #ff0000;
 }
+
+.spinner {
+  width: 25px;
+  height: 25px;
+  border: 4px solid #e0e0e0;      /* cor da "trilha" */
+  border-top-color: #3498db;      /* cor da parte que gira */
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.request-button {
+  padding: 10px 50px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.request-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+}
