@@ -12,13 +12,14 @@ function useLabRequest<TArgs extends unknown[], TResult>(
     try {
       const response = await requestFn(...args);
       setResult(response);
-      return response;
+    } catch (error) {
+      console.error('Error in useLabRequest:', error);
     } finally {
       setIsLoading(false);
     }
   }, [requestFn]);
 
-  return {labRequestRun: run, result, isLoading};
+  return {labRequestRun: run, result, isLoading };
 }
 
 export default useLabRequest;

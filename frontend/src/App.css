@@ -2,6 +2,9 @@
   background-color: #000000;
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
 }
 
 .form-fields {
@@ -50,4 +53,23 @@
   align-items: center;
   flex-direction: row;
   gap: 15px;
+}
+
+.code-block {
+  background-color: #1e1e1e;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 280px;
+  min-height: 120px;
+  margin: 0;
+  overflow-x: auto;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 13px;
+  color: #d4d4d4;
+}
+
+.code-block code {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
