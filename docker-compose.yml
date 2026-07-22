@@ -8,9 +8,9 @@ services:
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=polls
+      - POSTGRES_DB=lab
     volumes:
-      - polls_pg_data:/bitnami/postgresql
+      - lab_pg_data:/bitnami/postgresql
 
 volumes:
-  polls_pg_data:
+  lab_pg_data:
